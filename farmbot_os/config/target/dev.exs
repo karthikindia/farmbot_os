@@ -57,11 +57,11 @@ config :farmbot, FarmbotOS.Init.Supervisor,
 config :farmbot, FarmbotOS.Platform.Supervisor,
   platform_children: [
     FarmbotOS.Platform.Target.NervesHubClient,
-    FarmbotOS.Platform.Target.Network.Supervisor,
-    FarmbotOS.Platform.Target.Configurator.Supervisor,
+    # FarmbotOS.Platform.Target.Network.Supervisor,
+    # FarmbotOS.Platform.Target.Configurator.Supervisor,
     FarmbotOS.Platform.Target.SSHConsole,
-    FarmbotOS.Platform.Target.Uevent.Supervisor,
-    FarmbotOS.Platform.Target.InfoWorker.Supervisor
+    FarmbotOS.Platform.Target.Uevent.Supervisor
+    # FarmbotOS.Platform.Target.InfoWorker.Supervisor
   ]
 
 config :farmbot, FarmbotOS.System, system_tasks: FarmbotOS.Platform.Target.SystemTasks
