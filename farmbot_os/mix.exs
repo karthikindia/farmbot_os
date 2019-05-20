@@ -84,7 +84,7 @@ defmodule FarmbotOS.MixProject do
       {:nerves_firmware_ssh, "~> 0.4", targets: @all_targets},
       {:circuits_gpio, "~> 0.4", targets: @all_targets},
       {:toolshed, "~> 0.2", targets: @all_targets},
-      {:vintage_net, github: "nerves-networking/vintage_net", targets: @all_targets},
+      {:vintage_net, path: "/home/connor/oss/elixir/nerves/vintage_net", targets: @all_targets},
       {:farmbot_system_rpi3, "1.6.3-farmbot.0", runtime: false, targets: :rpi3},
       {:farmbot_system_rpi0, "1.6.3-farmbot.0", runtime: false, targets: :rpi0},
       {:farmbot_system_rpi, "1.6.3-farmbot.0", runtime: false, targets: :rpi}

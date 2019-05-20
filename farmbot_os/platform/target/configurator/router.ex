@@ -302,9 +302,7 @@ defmodule FarmbotOS.Platform.Target.Configurator.Router do
           send_resp(conn, 500, "server field invalid")
         end
 
-        update_config_value(:string, "authorization", "email", email)
-        update_config_value(:string, "authorization", "password", pass)
-        update_config_value(:string, "authorization", "server", server)
+        configurate(email, pass, server)
         redir(conn, "/finish")
 
       _ ->
@@ -370,5 +368,11 @@ defmodule FarmbotOS.Platform.Target.Configurator.Router do
         FarmbotCore.Logger.error(1, "#{inspect(uri)} is not valid")
         nil
     end
+  end
+
+  def configurate(email, pass, server) do
+    update_config_value(:string, "authorization", "email", email)
+    update_config_value(:string, "authorization", "password", pass)
+    update_config_value(:string, "authorization", "server", server)
   end
 end

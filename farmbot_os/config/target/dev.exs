@@ -57,7 +57,7 @@ config :farmbot, FarmbotOS.Init.Supervisor,
 config :farmbot, FarmbotOS.Platform.Supervisor,
   platform_children: [
     FarmbotOS.Platform.Target.NervesHubClient,
-    # FarmbotOS.Platform.Target.Network.Supervisor,
+    FarmbotOS.Platform.Target.Network.Supervisor,
     # FarmbotOS.Platform.Target.Configurator.Supervisor,
     FarmbotOS.Platform.Target.SSHConsole,
     FarmbotOS.Platform.Target.Uevent.Supervisor
@@ -72,3 +72,38 @@ config :nerves_hub,
   public_keys: [File.read!("priv/staging.pub"), File.read!("priv/prod.pub")]
 
 config :nerves_hub, NervesHub.Socket, reconnect_interval: 5_000
+
+config :vintage_net,
+  regulatory_domain: "US",
+  config: [
+    {"wlan0", 
+      # %{
+      #   type: VintageNet.Technology.WiFi,
+      #   wifi: %{
+      #     mode: :host,
+      #     ssid: "configure-farmbot",
+      #     key_mgmt: :none,
+      #     ap_scan: 1,
+      #     bgscan: :simple
+      #   },
+      #   ipv4: %{
+      #     method: :static,
+      #     address: "192.168.24.1",
+      #     netmask: "255.255.255.0",
+      #     gateway: "192.168.24.1"
+      #   },
+      #   dhcpd: %{
+      #     start: "192.168.24.2",
+      #     end: "192.168.24.20"
+      #   }
+      # }
+      %{
+        type: VintageNet.Technology.WiFi,
+        wifi: %{
+          key_mgmt: :wpa_psk,
+          psk: "supersecret",
+          ssid: "deleteme"
+        }
+      }
+    }
+  ]
